@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  ClearVision Eye Care — design system (Tailwind v4, CSS-first)      */
+/* ------------------------------------------------------------------ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Dynamic theme tokens — light & dark modes swap these variables only */
+:root {
+  --cv-bg: #ffffff;
+  --cv-surface: #f8fafc;
+  --cv-card: #ffffff;
+  --cv-ink: #0f172a;
+  --cv-muted: #64748b;
+  --cv-line: #e2e8f0;
+  --cv-primary: #1e40af;
+  --cv-primary-bright: #2563eb;
+  --cv-primary-soft: rgba(30, 64, 175, 0.07);
+  --cv-glass: rgba(255, 255, 255, 0.72);
+  --cv-hero-glow: rgba(56, 189, 248, 0.22);
+}
+
+.dark {
+  --cv-bg: #0b1220;
+  --cv-surface: #111c2e;
+  --cv-card: rgba(255, 255, 255, 0.04);
+  --cv-ink: #f1f5f9;
+  --cv-muted: #94a3b8;
+  --cv-line: rgba(255, 255, 255, 0.08);
+  --cv-primary: #3b82f6;
+  --cv-primary-bright: #60a5fa;
+  --cv-primary-soft: rgba(59, 130, 246, 0.12);
+  --cv-glass: rgba(11, 18, 32, 0.72);
+  --cv-hero-glow: rgba(59, 130, 246, 0.18);
+}
+
+@theme {
+  /* Palette */
+  --color-bg: var(--cv-bg);
+  --color-surface: var(--cv-surface);
+  --color-card: var(--cv-card);
+  --color-ink: var(--cv-ink);
+  --color-muted: var(--cv-muted);
+  --color-line: var(--cv-line);
+  --color-primary: var(--cv-primary);
+  --color-primary-bright: var(--cv-primary-bright);
+  --color-primary-soft: var(--cv-primary-soft);
+  --color-glass: var(--cv-glass);
+  --color-cta: #f59e0b;
+  --color-cta-deep: #d97706;
+  --color-sky: #38bdf8;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  --color-whatsapp: #25d366;
+
+  /* Typography — fluid via clamp, 16px minimum body size */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --text-h1: clamp(2.25rem, 5.5vw, 5.5rem);
+  --text-h1--line-height: 1.04;
+  --text-h2: clamp(1.75rem, 3.5vw, 3.5rem);
+  --text-h2--line-height: 1.12;
+  --text-h3: clamp(1.25rem, 2vw, 2rem);
+  --text-h3--line-height: 1.25;
+
+  /* Shadows — soft & layered */
+  --shadow-card: 0 8px 30px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 20px 50px rgba(30, 64, 175, 0.18);
+  --shadow-float: 0 20px 60px rgba(15, 23, 42, 0.16);
+
+  /* Motion */
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Breakpoints (3xl = 4K / smart TV) */
+  --breakpoint-3xl: 120rem;
+
+  --animate-blob: blob 22s ease-in-out infinite alternate;
+  --animate-float: floaty 4.5s ease-in-out infinite;
+  --animate-marquee: marquee 34s linear infinite;
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+
+  @keyframes blob {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(48px, -36px) scale(1.1);
+    }
+    66% {
+      transform: translate(-36px, 28px) scale(0.92);
+    }
+  }
+  @keyframes floaty {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45);
+    }
+    50% {
+      box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+    }
+  }
+}
+
+/* ------------------------------- base ------------------------------ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.05vw, 1.25rem); /* never below 16px */
+    line-height: 1.7;
+    color: var(--cv-ink);
+    background-color: var(--cv-bg);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip; /* zero horizontal scroll at any width */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: rgba(56, 189, 248, 0.35);
+  }
+
+  /* Anchors clear the sticky navbar */
+  [id] {
+    scroll-margin-top: 6.5rem;
+  }
+
+  /* Visible keyboard / TV-remote focus rings */
+  :where(a, button, input, select, textarea, [role="button"], [tabindex]):focus-visible {
+    outline: 2px solid var(--cv-primary-bright);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Slim premium scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--cv-primary) 35%, transparent);
+    border-radius: 999px;
+    border: 2px solid var(--cv-bg);
+  }
+}
+
+/* ---------------------------- utilities ---------------------------- */
+
+/* Responsive container: 1280px → 1600px (2xl) → 1920px (3xl/TV) */
+.wrap {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  max-width: 80rem;
+}
+@media (min-width: 96rem) {
+  .wrap {
+    max-width: 100rem;
+  }
+}
+@media (min-width: 120rem) {
+  .wrap {
+    max-width: 120rem;
+  }
+}
+
+@utility section-pad {
+  padding-block: clamp(4rem, 8vw, 10rem);
+}
+
+@utility glass {
+  background: var(--cv-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+@utility grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@utility dot-grid {
+  background-image: radial-gradient(rgba(30, 64, 175, 0.13) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.dark .dot-grid {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+}
+
+/* Shine sweep for primary CTAs */
+@utility shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -75%;
+  width: 45%;
+  transform: skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transition: left 0.7s var(--ease-premium);
+  pointer-events: none;
+}
+.shine:hover::after {
+  left: 135%;
+}
+
+/* Marquee pauses on hover */
+.marquee:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* ------------------------- reduced motion --------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
