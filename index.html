@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ClearVision Eye Care | Optometrists, LASIK & Designer Eyewear</title>
+    <script>
+      try {
+        var t = localStorage.getItem("cv-theme");
+        if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {}
+    </script>
+    <meta
+      name="description"
+      content="ClearVision Eye Care — modern optometrists, LASIK surgeons and a designer eyewear boutique. Book your eye exam online in under 30 seconds. Same-day emergencies welcome."
+    />
+    <meta name="theme-color" content="#1E40AF" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ClearVision Eye Care — See Life in Full Clarity" />
+    <meta
+      property="og:description"
+      content="Gentle, tech-forward eye care. Book your visit online in 30 seconds — no phone calls needed."
+    />
+    <meta property="og:image" content="/images/hero.jpg" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E40AF' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Optician",
+        "name": "ClearVision Eye Care",
+        "slogan": "See Life in Full Clarity",
+        "image": "/images/hero.jpg",
+        "telephone": "+1-555-010-2030",
+        "email": "hello@clearvision.care",
+        "url": "https://clearvision.care",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "218 Riverside Avenue, Suite 400",
+          "addressLocality": "Riverside",
+          "addressRegion": "CA",
+          "postalCode": "92501",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "19:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "09:00",
+            "closes": "15:00"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "486"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
